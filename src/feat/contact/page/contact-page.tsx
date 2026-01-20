@@ -1,11 +1,24 @@
 "use client";
 
 import Container from "@/components/layout/container";
-import { Mail, Instagram, MapPin, Phone } from "lucide-react";
+import { Mail, Instagram, MapPin, Phone, Check, Copy } from "lucide-react";
 import Image from "next/image";
 import ContactPic from "@/assets/images/ContactPic.png";
+import { useState } from "react";
 
 const ContactPage = () => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("contact@graciena.com");
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  };
+
   return (
     <section className="w-full py-16 md:py-24 bg-white fade-in">
       <Container>
@@ -45,13 +58,20 @@ const ContactPage = () => {
 
           {/* Contact Info */}
           <div className="flex flex-col gap-4 items-center w-full max-w-xs animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            <a
-              href="mailto:contact@graciena.com"
-              className="group flex items-center justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg"
+            <button
+              onClick={handleCopyEmail}
+              className="group flex items-center justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg cursor-pointer relative"
+              title="Click to copy email"
             >
-              <Mail className="w-4 h-4" strokeWidth={1.5} />
-              <span className="font-inter text-sm tracking-wide">contact@graciena.com</span>
-            </a>
+              {isCopied ? (
+                <Check className="w-4 h-4 text-green-500" strokeWidth={1.5} />
+              ) : (
+                <Mail className="w-4 h-4" strokeWidth={1.5} />
+              )}
+              <span className="font-inter text-sm tracking-wide">
+                {isCopied ? "Copied!" : "contact@graciena.com"}
+              </span>
+            </button>
 
             {/* Phone Numbers */}
             <div className="group flex items-start justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg">
