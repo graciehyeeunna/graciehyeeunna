@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "",
-  assetPrefix: "",
+  // GitHub Pages 하위 경로 배포를 위한 설정
+  basePath: "/graciehyeeunna",
+  assetPrefix: "/graciehyeeunna",
   trailingSlash: true,
   images: {
     unoptimized: true,
