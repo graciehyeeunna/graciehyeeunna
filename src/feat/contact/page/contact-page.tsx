@@ -11,7 +11,7 @@ const ContactPage = () => {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("contact@graciena.com");
+      await navigator.clipboard.writeText("gracie.hna@gmail.com");
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
@@ -69,7 +69,7 @@ const ContactPage = () => {
                 <Mail className="w-4 h-4" strokeWidth={1.5} />
               )}
               <span className="font-inter text-sm tracking-wide">
-                {isCopied ? "Copied!" : "contact@graciena.com"}
+                {isCopied ? "Copied!" : "gracie.hna@gmail.com"}
               </span>
             </button>
 
@@ -77,23 +77,23 @@ const ContactPage = () => {
             <div className="group flex items-start justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg">
               <Phone className="w-4 h-4 mt-1" strokeWidth={1.5} />
               <div className="flex flex-col gap-1 items-start">
-                <a href="tel:+10000000000" className="font-inter text-sm tracking-wide hover:font-medium transition-all">
-                  <span className="text-gray-400 text-xs mr-2">US</span> +1 (000) 000-0000
+                <a href="tel:+18573344724" className="font-inter text-sm tracking-wide hover:font-medium transition-all">
+                  <span className="text-gray-400 text-xs mr-2">US</span> +1 (857) 334 - 4724
                 </a>
-                <a href="tel:+821000000000" className="font-inter text-sm tracking-wide hover:font-medium transition-all">
-                  <span className="text-gray-400 text-xs mr-2">KR</span> +82 (10) 0000-0000
-                </a>
+                {/* <a href="tel:+821039237329" className="font-inter text-sm tracking-wide hover:font-medium transition-all">
+                  <span className="text-gray-400 text-xs mr-2">KR</span> +82 (10) 3923 - 7329
+                </a> */}
               </div>
             </div>
 
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/hyeeuna"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg"
             >
               <Instagram className="w-4 h-4" strokeWidth={1.5} />
-              <span className="font-inter text-sm tracking-wide">@graciena_official</span>
+              <span className="font-inter text-sm tracking-wide">@hyeeuna</span>
             </a>
 
             <div className="flex items-center justify-center gap-3 text-gray-400 w-full py-2 mt-2">

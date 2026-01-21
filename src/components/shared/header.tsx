@@ -34,10 +34,10 @@ const Header = ({ className = "" }: IHeaderProps) => {
         {/* Left: Email - Hidden on mobile, shown on md and up */}
         <div className="hidden md:flex justify-start">
           <a
-            href="mailto:GracieNa@gmail.com"
+            href="mailto:gracie.hna@gmail.com"
             className="text-sm text-gray-500 hover:text-gray-900 transition-colors no-underline font-inter"
           >
-            GracieNa@gmail.com
+            gracie.hna@gmail.com
           </a>
         </div>
 
@@ -58,8 +58,8 @@ const Header = ({ className = "" }: IHeaderProps) => {
                   <Link
                     href={item.href}
                     className={`transition-colors no-underline font-inter ${isActive
-                        ? 'text-gray-800'
-                        : 'text-gray-400 hover:text-gray-900'
+                      ? 'text-gray-800'
+                      : 'text-gray-400 hover:text-gray-900'
                       }`}
                   >
                     {item.label}
