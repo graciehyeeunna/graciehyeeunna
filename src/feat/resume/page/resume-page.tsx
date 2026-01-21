@@ -25,46 +25,50 @@ const ResumePage = () => {
   return (
     <section className="w-full">
       <Container>
-        <div className="flex flex-col items-center max-w-4xl mx-auto space-y-12">
-          {/* Header */}
-          <div className="text-center space-y-2 animate-slide-up">
-            <h1 className="font-cormorant font-bold text-gray-900" style={{ fontSize: "30px" }}>
+        <div className="flex flex-col items-center max-w-4xl mx-auto space-y-10">
+          {/* Page Header */}
+          <div className="text-center animate-slide-up">
+            <h1 className="font-cormorant font-bold text-gray-900 text-[30px] leading-tight">
               Resume
             </h1>
           </div>
 
-          {/* Resume Content (Slider) */}
-          <div className="w-full flex justify-center relative animate-slide-up group" style={{ animationDelay: "0.1s" }}>
-            <div className="relative w-fit">
-              {/* Header Info: Page Indicator & Download Link & Zoom */}
-              <div className="absolute -top-10 left-0 right-0 flex items-center justify-between text-xs font-inter text-gray-400">
-                <span>{currentPage + 1} / {totalPages}</span>
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => setIsZoomed(true)}
-                    className="flex items-center gap-1.5 hover:text-black transition-colors"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    <span>View Larger</span>
-                  </button>
-                  <a
-                    href="/resume.pdf"
-                    download
-                    className="flex items-center gap-1.5 hover:text-black transition-colors"
-                  >
-                    <Download className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    <span>Download</span>
-                  </a>
-                </div>
-              </div>
+          {/* Resume Slider Section */}
+          <div className="w-full max-w-fit mx-auto flex flex-col gap-4 animate-slide-up relative" style={{ animationDelay: "0.1s" }}>
 
-              {/* Navigation Buttons */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2 md:-mx-16 z-10 pointer-events-none">
+            {/* Toolbar: Page Indicator, Zoom, Download */}
+            <div className="flex items-center justify-between text-xs font-inter text-gray-400 px-1">
+              <span>{currentPage + 1} / {totalPages}</span>
+              <div className="flex items-center gap-5">
+                <button
+                  onClick={() => setIsZoomed(true)}
+                  className="flex items-center gap-1.5 cursor-pointer hover:text-black transition-colors"
+                  title="View Larger"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" strokeWidth={1.5} />
+                  <span>View Larger</span>
+                </button>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="flex items-center gap-1.5 hover:text-black transition-colors"
+                  title="Download PDF"
+                >
+                  <Download className="w-3.5 h-3.5" strokeWidth={1.5} />
+                  <span>Download</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Resume Page Container with Navigation */}
+            <div className="relative">
+              {/* Navigation Buttons - Always Visible */}
+              <div className="absolute inset-y-0 -left-4 -right-4 md:-left-16 md:-right-16 flex items-center justify-between z-10 pointer-events-none">
                 <button
                   onClick={handlePrevPage}
                   disabled={currentPage === 0}
-                  className={`p-2 rounded-full bg-white/80 shadow-sm border border-gray-100 transition-all pointer-events-auto ${currentPage === 0 ? "opacity-0 cursor-default" : "opacity-100 hover:bg-gray-50"
-                    }`}
+                  className={`p-2 rounded-full bg-white/80 shadow-sm border border-gray-100 transition-all pointer-events-auto
+                    ${currentPage === 0 ? "opacity-30 cursor-not-allowed" : "opacity-100 hover:bg-gray-50"}`}
                   aria-label="Previous Page"
                 >
                   <ChevronLeft className="w-6 h-6 text-gray-600" strokeWidth={1.5} />
@@ -72,42 +76,21 @@ const ResumePage = () => {
                 <button
                   onClick={handleNextPage}
                   disabled={currentPage === totalPages - 1}
-                  className={`p-2 rounded-full bg-white/80 shadow-sm border border-gray-100 transition-all pointer-events-auto ${currentPage === totalPages - 1 ? "opacity-0 cursor-default" : "opacity-100 hover:bg-gray-50"
-                    }`}
+                  className={`p-2 rounded-full bg-white/80 shadow-sm border border-gray-100 transition-all pointer-events-auto
+                    ${currentPage === totalPages - 1 ? "opacity-30 cursor-not-allowed" : "opacity-100 hover:bg-gray-50"}`}
                   aria-label="Next Page"
                 >
                   <ChevronRight className="w-6 h-6 text-gray-600" strokeWidth={1.5} />
                 </button>
               </div>
 
-              {/* Resume Image / Placeholder */}
+              {/* Page Content */}
               <div className="h-[660px] aspect-[1/1.414] bg-gray-50 border border-gray-100 rounded-sm shadow-sm flex items-center justify-center overflow-hidden transition-all duration-300">
-                {currentPage === 0 ? (
-                  <div className="w-full h-full flex items-center justify-center fade-in">
-                    <span className="text-gray-400 font-inter text-sm italic">Resume Page 1 (Image/PDF Placeholder)</span>
-                    {/* 
-                  <Image 
-                    src={ResumeImg1} 
-                    alt="Resume Page 1" 
-                    fill
-                    className="object-contain"
-                    priority
-                  /> 
-                  */}
-                  </div>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center fade-in">
-                    <span className="text-gray-400 font-inter text-sm italic">Resume Page 2 (Image/PDF Placeholder)</span>
-                    {/* 
-                  <Image 
-                    src={ResumeImg2} 
-                    alt="Resume Page 2" 
-                    fill
-                    className="object-contain"
-                  /> 
-                  */}
-                  </div>
-                )}
+                <div key={currentPage} className="w-full h-full flex items-center justify-center fade-in">
+                  <span className="text-gray-400 font-inter text-sm italic">
+                    Resume Page {currentPage + 1} (Placeholder)
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -117,47 +100,37 @@ const ResumePage = () => {
       {/* Zoomed Modal Overlay */}
       {isZoomed && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 md:p-8 backdrop-blur-sm animate-fade-in"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 md:p-10 backdrop-blur-sm animate-fade-in cursor-zoom-out"
           onClick={() => setIsZoomed(false)}
         >
+          {/* Close Button */}
           <button
             onClick={() => setIsZoomed(false)}
-            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-[110]"
+            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-[110] p-2"
             aria-label="Close zoomed view"
           >
-            <X className="w-8 h-8" strokeWidth={1.5} />
+            <X className="w-8 h-8" strokeWidth={1.2} />
           </button>
 
+          {/* Zoomed Content Container */}
           <div
-            className="relative h-full aspect-[1/1.414] bg-white shadow-2xl overflow-hidden flex items-center justify-center"
+            className="relative h-full aspect-[1/1.414] bg-white shadow-2xl overflow-hidden flex items-center justify-center cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
-            {currentPage === 0 ? (
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-gray-400 font-inter text-lg italic px-10 text-center">Resume Page 1 (Large Preview)</span>
-                {/* 
+            <div key={currentPage} className="w-full h-full flex items-center justify-center fade-in">
+              <span className="text-gray-400 font-inter text-lg italic px-10 text-center">
+                Resume Page {currentPage + 1} (Large Preview)
+              </span>
+              {/* 
               <Image 
-                src={ResumeImg1} 
-                alt="Resume Page 1 Full" 
+                src={currentPage === 0 ? ResumeImg1 : ResumeImg2} 
+                alt={`Resume Page ${currentPage + 1} Full`}
                 fill
                 className="object-contain"
                 priority
               /> 
               */}
-              </div>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-gray-400 font-inter text-lg italic px-10 text-center">Resume Page 2 (Large Preview)</span>
-                {/* 
-              <Image 
-                src={ResumeImg2} 
-                alt="Resume Page 2 Full" 
-                fill
-                className="object-contain"
-              /> 
-              */}
-              </div>
-            )}
+            </div>
           </div>
         </div>
       )}
