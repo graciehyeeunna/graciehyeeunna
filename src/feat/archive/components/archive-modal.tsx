@@ -3,6 +3,7 @@
 import React from "react";
 import { X } from "lucide-react";
 import { IArchiveItem } from "@/feat/archive/constants/realdata";
+import { getEmbedUrl } from "@/feat/archive/utils/video-utils";
 
 /**
  * @interface IProps
@@ -12,34 +13,6 @@ interface IProps {
   item: IArchiveItem;
   onClose: () => void;
 }
-
-/**
- * @function getEmbedUrl
- * @description 비디오 링크를 임베드 가능한 URL로 변환하는 헬퍼 함수
- */
-const getEmbedUrl = (links: string[]) => {
-  const videoLink = links.find(
-    (l) =>
-      l.includes("vimeo.com") ||
-      l.includes("youtube.com") ||
-      l.includes("youtu.be")
-  );
-  if (!videoLink) return null;
-
-  if (videoLink.includes("vimeo.com")) {
-    const videoId = videoLink.split("video=")[1] || videoLink.split("/").pop();
-    return `https://player.vimeo.com/video/${videoId}`;
-  }
-  
-  if (videoLink.includes("youtube.com") || videoLink.includes("youtu.be")) {
-    const videoId = videoLink.includes("watch?v=")
-      ? videoLink.split("v=")[1].split("&")[0]
-      : videoLink.split("/").pop();
-    return `https://www.youtube.com/embed/${videoId}`;
-  }
-  
-  return null;
-};
 
 /**
  * @function ArchiveModal

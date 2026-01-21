@@ -9,6 +9,7 @@ export interface IArchiveItem {
   role: string;
   badge: 'star' | 'green' | null;
   title: string;
+  thumbnail?: string | null;
   description: string | null;
   links: string[];
   notes: string | null;
@@ -40,6 +41,7 @@ export const ARCHIVE_DATA: IArchiveData = {
           role: 'FOH',
           badge: 'star',
           title: 'Ziv Kartaginer Middle Eastern Big Band',
+          thumbnail: '/images/archive/sample.gif',
           description: null,
           links: [
             'https://college.berklee.edu/events/ziv-karta11giner-middle-eastern-big-band',
