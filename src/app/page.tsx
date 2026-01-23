@@ -57,22 +57,22 @@ export default function Home() {
 
           {/* Main Visual Content */}
           <section className="relative w-full max-w-4xl flex flex-col items-center gap-16">
-            <div 
-              className="relative w-full aspect-[4/5] max-w-md perspective-1000 cursor-pointer"
+            <div
+              className="relative w-full aspect-[3/4] max-w-md perspective-1000 cursor-pointer"
               onClick={handleCardClick}
               onMouseEnter={() => handleCardHover(true)}
               onMouseLeave={() => handleCardHover(false)}
             >
               <div className={`relative w-full h-full transition-transform duration-700 transform-style-preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
                 {/* Front Side - Image/Placeholder */}
-                <div className="absolute inset-0 w-full h-full bg-gray-100 rounded-sm backface-hidden flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 w-full h-full bg-black rounded-sm backface-hidden flex items-center justify-center overflow-hidden">
                   {currentRole?.thumbnail ? (
                     <div className="relative w-full h-full">
                       <Image
                         src={currentRole.thumbnail}
                         alt={currentRole.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                       {hoveredCard && (
                         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center transition-opacity duration-300">
@@ -108,7 +108,7 @@ export default function Home() {
                       <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/70 to-transparent p-4">
                         <h3 className="text-white text-lg font-medium">{currentRole.title}</h3>
                       </div>
-                      
+
                       {/* Video Content */}
                       <div className="w-full h-full">
                         {embedUrl && (
