@@ -7,7 +7,7 @@ export type { IAboutMeItem } from "../type";
 export const ABOUT_ME_DATA: IAboutMeItem[] = [
   {
     id: "performance",
-    videoUrl: "https://vimeo.com/1157249297",
+    videoUrl: "https://www.youtube.com/watch?v=s0sWmK7SYnI",
     title: "Performance & Stage Sound",
     description: [
       "I have engineered live performances across major concert halls and large rehearsal spaces at Berklee College of Music, including David Friend Recital Hall, Café 939, and the Berklee Performance Center. Through these experiences, I developed strong proficiency in digital mixing consoles, Dante-based audio networks, and live production workflows.",
