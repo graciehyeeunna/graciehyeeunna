@@ -7,7 +7,7 @@ import { useState } from "react";
 import SplashScreen from "@/feat/landing/components/splash-screen";
 import Image from "next/image";
 import { getEmbedUrl } from "@/feat/archive/utils/video-utils";
-import { ROLE_DATA, type TRole } from "@/../data/home/data";
+import { ROLE_DATA, type TRole } from "@/../data/home/iam/data";
 
 export default function Home() {
   const [activeRole, setActiveRole] = useState<TRole>("live-sound");

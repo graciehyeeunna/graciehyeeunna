@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Container from '@/components/layout/container';
-import { ABOUT_ME_DATA } from '@/../data/home/data';
+import { ABOUT_ME_DATA } from '@/../data/home/aboutMe/data';
 import { getEmbedUrl, getVideoThumbnail } from '@/feat/archive/utils/video-utils';
 
 const AboutMe = () => {
