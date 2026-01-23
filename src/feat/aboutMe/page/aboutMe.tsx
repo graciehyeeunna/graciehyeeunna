@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Container from '@/components/layout/container';
-import { ABOUT_ME_DATA } from '../constants/aboutMeData';
+import { ABOUT_ME_DATA } from '@/../data/home/data';
 import { getEmbedUrl, getVideoThumbnail } from '@/feat/archive/utils/video-utils';
 
 const AboutMe = () => {
@@ -29,9 +29,8 @@ const AboutMe = () => {
               <div
                 key={item.id}
                 onClick={() => setSelectedId(item.id)}
-                className={`relative aspect-[16/9] bg-gray-100 overflow-hidden cursor-pointer transition-all duration-500 ${
-                  isSelected ? 'ring-2 ring-black ring-offset-4 opacity-100' : 'opacity-70 hover:opacity-100'
-                }`}
+                className={`relative aspect-[16/9] bg-gray-100 overflow-hidden cursor-pointer transition-all duration-500 ${isSelected ? 'ring-2 ring-black ring-offset-4 opacity-100' : 'opacity-70 hover:opacity-100'
+                  }`}
               >
                 {/* 선택된 비디오만 재생 */}
                 {isSelected && embedUrl ? (
@@ -40,7 +39,7 @@ const AboutMe = () => {
                       src={`${embedUrl}?autoplay=1&muted=1&loop=1&background=1`}
                       title={item.title}
                       className="absolute border-0 pointer-events-none"
-                      style={{ 
+                      style={{
                         top: '50%',
                         left: '50%',
                         width: '300%',

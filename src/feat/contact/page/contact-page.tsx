@@ -4,13 +4,14 @@ import Container from "@/components/layout/container";
 import { Mail, MapPin, Phone, Check } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { CONTACT_INFO } from "@/../data/contact/data";
 
 const ContactPage = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("gracie.hna@gmail.com");
+      await navigator.clipboard.writeText(CONTACT_INFO.email);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
@@ -26,9 +27,8 @@ const ContactPage = () => {
           {/* Profile Image */}
           <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-gray-100 shadow-sm bg-gray-50 flex items-center justify-center group">
             <Image
-            // 혜은 : 아래 src 경로 변경하시면 이미지가 바뀝니다.
-              src="/images/contact/ContactPic.png"
-              alt="Gracie Na"
+              src={CONTACT_INFO.profileImage}
+              alt={CONTACT_INFO.name}
               fill
               className="object-cover"
               priority
@@ -38,17 +38,17 @@ const ContactPage = () => {
           {/* Name & Title */}
           <div className="space-y-3 animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-cormorant font-medium text-gray-900 tracking-tight">
-              Gracie Na
+              {CONTACT_INFO.name}
             </h1>
             <p className="text-xs md:text-sm text-gray-500 uppercase tracking-[0.2em] font-medium">
-              Sound Engineer
+              {CONTACT_INFO.title}
             </p>
           </div>
 
           {/* Introduction */}
           <div className="max-w-lg animate-slide-up" style={{ animationDelay: "0.1s" }}>
             <p className="text-gray-600 font-cormorant text-lg md:text-2xl leading-relaxed italic">
-              "Let's create something beautiful together."
+              "{CONTACT_INFO.quote}"
             </p>
           </div>
 
@@ -68,41 +68,59 @@ const ContactPage = () => {
                 <Mail className="w-4 h-4" strokeWidth={1.5} />
               )}
               <span className="font-inter text-sm tracking-wide">
-                {isCopied ? "Copied!" : "gracie.hna@gmail.com"}
+                {isCopied ? "Copied!" : CONTACT_INFO.email}
               </span>
             </button>
 
             {/* Phone Numbers */}
-            <div className="group flex items-start justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg">
-              <Phone className="w-4 h-4 mt-1" strokeWidth={1.5} />
-              <div className="flex flex-col gap-1 items-start">
-                <a href="tel:+18573344724" className="font-inter text-sm tracking-wide hover:font-medium transition-all">
-                  <span className="text-gray-400 text-xs mr-2">US</span> +1 (857) 334 - 4724
-                </a>
-                {/* <a href="tel:+821039237329" className="font-inter text-sm tracking-wide hover:font-medium transition-all">
-                  <span className="text-gray-400 text-xs mr-2">KR</span> +82 (10) 3923 - 7329
-                </a> */}
+            {CONTACT_INFO.phoneNumbers.length > 0 && (
+              <div className="group flex items-start justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg">
+                <Phone className="w-4 h-4 mt-1" strokeWidth={1.5} />
+                <div className="flex flex-col gap-1 items-start">
+                  {CONTACT_INFO.phoneNumbers.map((phone) => (
+                    <a
+                      key={phone.tel}
+                      href={`tel:${phone.tel}`}
+                      className="font-inter text-sm tracking-wide hover:font-medium transition-all"
+                    >
+                      <span className="text-gray-400 text-xs mr-2">{phone.country}</span>
+                      {phone.number}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            <a
-              href="https://instagram.com/hyeeuna"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg"
-            >
-              <svg className="w-4 h-4" strokeWidth={1.5} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
-              <span className="font-inter text-sm tracking-wide">@hyeeuna</span>
-            </a>
+            {/* Social Links */}
+            {CONTACT_INFO.socialLinks.map((social) => (
+              <a
+                key={social.platform}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-3 text-gray-500 hover:text-black transition-all w-full py-2 hover:bg-gray-50 rounded-lg"
+              >
+                {social.platform === "instagram" && (
+                  <svg className="w-4 h-4" strokeWidth={1.5} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                )}
+                <span className="font-inter text-sm tracking-wide">{social.handle}</span>
+              </a>
+            ))}
 
+            {/* Location */}
             <div className="flex items-center justify-center gap-3 text-gray-400 w-full py-2 mt-2">
               <MapPin className="w-4 h-4" strokeWidth={1.5} />
               <div className="flex flex-col items-center">
-                <span className="font-inter text-sm tracking-wide text-gray-600">Currently based in <span className="font-medium text-gray-800">Boston, MA</span></span>
+                <span className="font-inter text-sm tracking-wide text-gray-600">
+                  Currently based in{" "}
+                  <span className="font-medium text-gray-800">
+                    {CONTACT_INFO.location.city}, {CONTACT_INFO.location.region}
+                  </span>
+                </span>
               </div>
             </div>
           </div>
